@@ -18,16 +18,23 @@ index.html
         }
         #card {
             background: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 20px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             text-align: center;
-            max-width: 400px;
+            max-width: 90%;
+            width: 400px;
             position: relative;
             z-index: 1;
         }
-        .cat-img { width: 200px; border-radius: 10px; }
-        h1 { color: #d63384; font-size: 24px; }
+        /* This ensures your image is fully visible and not zoomed in */
+        .main-img { 
+            width: 100%; 
+            max-height: 400px;
+            border-radius: 10px; 
+            object-fit: contain; 
+        }
+        h1 { color: #d63384; font-size: 22px; margin-top: 15px; }
         .btns { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
         button {
             padding: 12px 25px;
@@ -59,11 +66,13 @@ index.html
             z-index: 1000;
         }
         #successPage h1 {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 20px;
             color: #d63384;
             z-index: 1001;
+            text-align: center;
+            margin: 20px;
         }
         .heart {
             position: fixed;
@@ -81,8 +90,8 @@ index.html
 
     <div id="card">
         <div id="questionPage">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIycXpxNHBqYm93ZzN4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v4aMAsq5JidF2D9CAt/giphy.gif" class="cat-img">
-            <h1>Will You Be My Valentine, Shruti My Babyyyy Meri Jaanu?❤️❤️</h1>
+            <img src="Valentines 2.jfif" class="main-img" alt="Our Memory">
+            <h1>Will You Be My Valentine, Shruti! My Babyyyy Meri Jaanu?❤️❤️</h1>
             <div class="btns">
                 <button id="yesBtn">Yes!</button>
                 <button id="noBtn">No</button>
@@ -98,7 +107,9 @@ index.html
         const noBtn = document.getElementById('noBtn');
         const yesBtn = document.getElementById('yesBtn');
         const successPage = document.getElementById('successPage');
+        const card = document.getElementById('card');
 
+        // Logic to make the 'No' button run away
         noBtn.addEventListener('mouseover', () => {
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
@@ -107,8 +118,9 @@ index.html
             noBtn.style.top = y + 'px';
         });
 
+        // Click logic for 'Yes'
         yesBtn.addEventListener('click', () => {
-            document.getElementById('card').classList.add('hidden');
+            card.classList.add('hidden');
             successPage.classList.remove('hidden');
             setInterval(createHeart, 300);
         });
