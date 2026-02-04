@@ -1,0 +1,84 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message ❤️</title>
+    <style>
+        body {
+            background-color: #ffdae0; /* Romantic pink background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        #card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            position: relative;
+        }
+        .cat-img { width: 200px; border-radius: 10px; }
+        h1 { color: #d63384; font-size: 24px; }
+        .btns { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        #yesBtn { background-color: #ff4d6d; color: white; }
+        #noBtn { background-color: #fb8500; color: white; position: relative; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="card">
+        <div id="questionPage">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIycXpxNHBqYm93ZzN4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v4aMAsq5JidF2D9CAt/giphy.gif" class="cat-img">
+            <h1>Will you be my Valentine, [Put Her Name Here]? ❤️</h1>
+            <div class="btns">
+                <button id="yesBtn">Yes!</button>
+                <button id="noBtn">No</button>
+            </div>
+        </div>
+
+        <div id="successPage" class="hidden">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIycXpxNHBqYm93ZzN4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/MDJ9IbM3vuzUtS2m0P/giphy.gif" class="cat-img">
+            <h1>Yay! I Love You! 🌹❤️</h1>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const questionPage = document.getElementById('questionPage');
+        const successPage = document.getElementById('successPage');
+
+        // Logic to make the button run away
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        });
+
+        // Show success screen
+        yesBtn.addEventListener('click', () => {
+            questionPage.classList.add('hidden');
+            successPage.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
