@@ -41,7 +41,6 @@ index.html
         #noBtn { background-color: #fb8500; color: white; position: relative; }
         .hidden { display: none; }
 
-        /* THIS IS THE PART YOU WERE LOOKING FOR */
         #successPage {
             background-image: url('Valentines 1.jfif');
             background-size: cover;
@@ -62,6 +61,23 @@ index.html
             padding: 20px;
             border-radius: 20px;
             color: #d63384;
+            z-index: 1001;
+        }
+
+        /* HEART ANIMATION CSS */
+        .heart {
+            position: fixed;
+            top: -10vh;
+            transform: translateY(0);
+            animation: fall 3s linear forwards;
+            color: #ff4d6d;
+            z-index: 1002;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+            }
         }
     </style>
 </head>
@@ -70,7 +86,7 @@ index.html
     <div id="card">
         <div id="questionPage">
             <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIycXpxNHBqYm93ZzN4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v4aMAsq5JidF2D9CAt/giphy.gif" class="cat-img">
-            <h1>Will You Be My Valentine, Shrutiiii My Babyyy?❤️❤️</h1>
+            <h1>Will you be my Valentine, Shruti1111 My Babyyyy?❤️❤️</h1>
             <div class="btns">
                 <button id="yesBtn">Yes!</button>
                 <button id="noBtn">No</button>
@@ -79,7 +95,7 @@ index.html
     </div>
 
     <div id="successPage" class="hidden">
-        <h1>  I Love You Meri Chutkul, Meri Jaaan! ❤️🌹</h1>
+        <h1>Yay! I Love You Meri Chutkul, My Honey Bun Sugar Plum! ❤️🌹</h1>
     </div>
 
     <script>
@@ -88,6 +104,7 @@ index.html
         const questionPage = document.getElementById('questionPage');
         const successPage = document.getElementById('successPage');
 
+        // Running No Button Logic
         noBtn.addEventListener('mouseover', () => {
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
@@ -96,10 +113,26 @@ index.html
             noBtn.style.top = y + 'px';
         });
 
+        // Yes Button Logic + Heart Generator
         yesBtn.addEventListener('click', () => {
             document.getElementById('card').classList.add('hidden');
             successPage.classList.remove('hidden');
+            setInterval(createHeart, 300); // Create a new heart every 300ms
         });
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
     </script>
 </body>
 </html>
